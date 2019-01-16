@@ -13,34 +13,15 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
+#ifndef __MAIN_HELPER_H
+#define __MAIN_HELPER_H
 #include <iostream>
-#include <cstring>
 #include <unordered_map>
-#include "MainHelper.h"
-
-int main(int argc, char *argv[])
+class MainHelper
 {
-    if (argc == 1)
-        MainHelper::showHelp();
-    else if (argc == 2)
-    {
-        if (strcmp(argv[1], "--help") == 0)
-        {
-            MainHelper::showHelp();
-        }
-        else if(strcmp(argv[1], "--version") == 0)
-        {
-            MainHelper::showVersion();
-        }
-    }
-    else if (argc%2 == 0)
-    {
-        std::cerr << "Check whether you have selected the right flags." << std::endl;
-        return EXIT_FAILURE;
-    }
-    else{
-        std::unordered_map<std::string, std::string> param_map = MainHelper::parse(argc,argv);
-        return EXIT_SUCCESS;
-    }
-    return EXIT_SUCCESS;
-}
+  public:
+    static std::unordered_map<std::string, std::string> parse(int argc, char *argv[]); // Parses the parameter list specified in the CLI
+    static void showHelp(); // Shows help if specified in command line flag
+    static void showVersion(); // Shows help if specified in command line flag
+};
+#endif

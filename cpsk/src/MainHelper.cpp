@@ -13,34 +13,22 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-#include <iostream>
-#include <cstring>
 #include <unordered_map>
 #include "MainHelper.h"
-
-int main(int argc, char *argv[])
+std::unordered_map<std::string, std::string> MainHelper::parse(int argc, char* argv[])
 {
-    if (argc == 1)
-        MainHelper::showHelp();
-    else if (argc == 2)
-    {
-        if (strcmp(argv[1], "--help") == 0)
-        {
-            MainHelper::showHelp();
-        }
-        else if(strcmp(argv[1], "--version") == 0)
-        {
-            MainHelper::showVersion();
-        }
-    }
-    else if (argc%2 == 0)
-    {
-        std::cerr << "Check whether you have selected the right flags." << std::endl;
-        return EXIT_FAILURE;
-    }
-    else{
-        std::unordered_map<std::string, std::string> param_map = MainHelper::parse(argc,argv);
-        return EXIT_SUCCESS;
-    }
-    return EXIT_SUCCESS;
+    // @TODO Incomplete definition
+    // @TODO implement a PARAM_MAP_PARSE_EXECEPTION
+    std::unordered_map<std::string,std::string> param_map;
+
+}
+void MainHelper::showHelp()
+{
+    // @TODO
+    std::cout << "@TODO: Showing Help" << std::endl;
+}
+void MainHelper::showVersion()
+{
+    // @TODO
+    std::cout << "@TODO: Showing Version" << std::endl;
 }
