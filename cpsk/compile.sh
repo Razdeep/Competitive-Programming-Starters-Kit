@@ -1,1 +1,1 @@
-g++ main.cpp MainHelper.cpp -o cpsk
+g++ main.cpp MainHelper.cpp Misc.cpp -o cpsk

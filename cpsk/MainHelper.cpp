@@ -15,12 +15,15 @@
  */
 #include <unordered_map>
 #include "MainHelper.h"
-std::unordered_map<std::string, std::string> MainHelper::parse(int argc, char* argv[])
+#include "Misc.h"
+std::unordered_map<std::string, std::string> MainHelper::parse(int argc, char *argv[])
 {
-    // @TODO Incomplete definition
-    // @TODO implement a PARAM_MAP_PARSE_EXECEPTION
-    std::unordered_map<std::string,std::string> param_map;
-
+    std::unordered_map<std::string, std::string> param_map;
+    for (int i = 0; i < argc; i += 2)
+    {
+        param_map[argv[i]] = argv[i + 1];
+    }
+    return param_map;
 }
 void MainHelper::showHelp()
 {
@@ -29,6 +32,8 @@ void MainHelper::showHelp()
 }
 void MainHelper::showVersion()
 {
-    // @TODO
-    std::cout << "@TODO: Showing Version" << std::endl;
+    Misc::drawLineTransition(60,50);
+    Misc::transitionText(std::string("\tCompetitive Programming Starters Kit (CPSK)"),100);
+    Misc::drawLineTransition(60,50);
+    Misc::transitionText("Version 0.1");
 }
