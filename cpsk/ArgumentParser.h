@@ -13,16 +13,16 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-#ifndef __MAIN_HELPER_H
-#define __MAIN_HELPER_H
+#ifndef __ARGUMENT_PARSER_H
+#define __ARGUMENT_PARSER_H
 #include <iostream>
 #include <unordered_map>
 namespace cpsk{
-  class MainHelper
+  class ArgumentParser
   {
     public:
-      static void showHelp(); // Shows help if specified in command line flag
-      static void showVersion(); // Shows help if specified in command line flag
+      // Parses the parameter list specified in the CLI
+      static std::unordered_map<std::string, std::string> parse(int argc, char *argv[]);
   };
 }
 #endif

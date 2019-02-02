@@ -16,15 +16,17 @@
 #ifndef __MISC_H
 #define __MISC_H
 #include <iostream>
-class Misc
-{
-  public:
-    static void delay();
-    static void delay(const long int);
-    static void drawLine(int);
-    static void drawLine(const char, int);
-    static void drawLineTransition(unsigned int length,unsigned int delayms);
-    static void drawLineTransition(const char, int, int);
-    static void transitionText(const std::string& str, int ms=100);
-};
+namespace cpsk{
+  class Misc
+  {
+    public:
+      static void delay();
+      static void delay(const long int);
+      static void drawLine(int);
+      static void drawLine(const char, int);
+      static void drawLineTransition(unsigned int length,unsigned int delayms);
+      static void drawLineTransition(const char, int, int);
+      static void transitionText(const std::string& str, int ms=100);
+  };
+}
 #endif

@@ -16,24 +16,16 @@
 #include <unordered_map>
 #include "MainHelper.h"
 #include "Misc.h"
-std::unordered_map<std::string, std::string> MainHelper::parse(int argc, char *argv[])
-{
-    std::unordered_map<std::string, std::string> param_map;
-    for (int i = 0; i < argc; i += 2)
-    {
-        param_map[argv[i]] = argv[i + 1];
-    }
-    return param_map;
-}
-void MainHelper::showHelp()
+
+void cpsk::MainHelper::showHelp()
 {
     // @TODO
     std::cout << "@TODO: Showing Help" << std::endl;
 }
-void MainHelper::showVersion()
+void cpsk::MainHelper::showVersion()
 {
     Misc::drawLineTransition(60,50);
     Misc::transitionText(std::string("\tCompetitive Programming Starters Kit (CPSK)"),100);
     Misc::drawLineTransition(60,50);
-    Misc::transitionText("Version 0.1");
+    Misc::transitionText(std::string("Version 0.1"));
 }

@@ -17,20 +17,25 @@
 #include <cstring>
 #include <unordered_map>
 #include "MainHelper.h"
+#include "ArgumentParser.h"
 
 int main(int argc, char *argv[])
 {
     if (argc == 1)
-        MainHelper::showHelp();
+        cpsk::MainHelper::showHelp();
     else if (argc == 2)
     {
-        if (strcmp(argv[1], "--help") == 0)
+        if (strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "-h") == 0)
         {
-            MainHelper::showHelp();
+            cpsk::MainHelper::showHelp();
         }
-        else if(strcmp(argv[1], "--version") == 0)
+        else if(strcmp(argv[1], "--version") == 0 || strcmp(argv[1], "-v") == 0)
         {
-            MainHelper::showVersion();
+            cpsk::MainHelper::showVersion();
+        }
+        else
+        {
+            
         }
     }
     else if (argc%2 == 0)
@@ -39,7 +44,12 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
     else{
-        std::unordered_map<std::string, std::string> param_map = MainHelper::parse(argc,argv);
+        std::unordered_map<std::string, std::string> param_map = cpsk::ArgumentParser::parse(argc,argv);
+        FILE *template_file_pointer = fopen("TEMPLATE","r");                                // @TODO: get source directory and add it to path
+        FILE *output_file_pointer = fopen(param_map[std::string("filename")].c_str(),"w");  // @TODO: get current working directory
+        
+        fclose(template_file_pointer);
+        fclose(output_file_pointer);
         return EXIT_SUCCESS;
     }
     return EXIT_SUCCESS;

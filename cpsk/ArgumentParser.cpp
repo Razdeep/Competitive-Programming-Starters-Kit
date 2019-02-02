@@ -13,16 +13,15 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-#ifndef __MAIN_HELPER_H
-#define __MAIN_HELPER_H
-#include <iostream>
 #include <unordered_map>
-namespace cpsk{
-  class MainHelper
-  {
-    public:
-      static void showHelp(); // Shows help if specified in command line flag
-      static void showVersion(); // Shows help if specified in command line flag
-  };
+#include "ArgumentParser.h"
+std::unordered_map<std::string, std::string> cpsk::ArgumentParser::parse(int argc, char *argv[])
+{
+    // @TODO Put the value having blank key to the key 'filename'
+    std::unordered_map<std::string, std::string> param_map;
+    for (int i = 0; i < argc; i += 2)
+    {
+        param_map[argv[i]] = argv[i + 1];
+    }
+    return param_map;
 }
-#endif

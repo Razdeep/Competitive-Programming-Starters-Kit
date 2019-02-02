@@ -14,20 +14,20 @@
  *   limitations under the License.
  */
 #include "Misc.h"
-void Misc::delay()
+void cpsk::Misc::delay()
 {
     for (int i = 0; i < 100000; i++)
         for (int j = 0; j < 1000; j++)
             ;
 }
-void Misc::delay(const long int ms)
+void cpsk::Misc::delay(const long int ms)
 {
     // @TODO
     for (int i = 0; i < 10000; i++)
         for (int j = 0; j < 1000; j++)
             ;
 }
-void Misc::drawLine(int n = 50)
+void cpsk::Misc::drawLine(int n = 50)
 {
     for (int i = 0; i < n; i++)
     {
@@ -35,7 +35,7 @@ void Misc::drawLine(int n = 50)
     }
     std::cout << std::endl;
 }
-void Misc::drawLine(const char ch, int n = 50)
+void cpsk::Misc::drawLine(const char ch, int n = 50)
 {
     int i;
     for (i = 0; i < n; i++)
@@ -44,7 +44,7 @@ void Misc::drawLine(const char ch, int n = 50)
     }
     std::cout << std::endl;
 }
-void Misc::drawLineTransition(unsigned int length, unsigned int delayms)
+void cpsk::Misc::drawLineTransition(unsigned int length, unsigned int delayms)
 {
     for (int i = 0; i < length; i++)
     {
@@ -54,7 +54,7 @@ void Misc::drawLineTransition(unsigned int length, unsigned int delayms)
     }
     std::cout << std::endl;
 }
-void Misc::drawLineTransition(const char ch, int n = 50, int ms = 50)
+void cpsk::Misc::drawLineTransition(const char ch, int n = 50, int ms = 50)
 {
     int i;
     for (i = 0; i < n; i++)
@@ -64,7 +64,7 @@ void Misc::drawLineTransition(const char ch, int n = 50, int ms = 50)
     }
     std::cout << std::endl;
 }
-void Misc::transitionText(const std::string& str, int ms)
+void cpsk::Misc::transitionText(const std::string& str, int ms)
 {
     for (int i = 0; i < str.size(); i++)
     {
