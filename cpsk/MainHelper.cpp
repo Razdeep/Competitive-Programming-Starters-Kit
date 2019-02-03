@@ -14,6 +14,7 @@
  *   limitations under the License.
  */
 #include <unordered_map>
+#include <fstream>
 #include "MainHelper.h"
 #include "Misc.h"
 
@@ -24,8 +25,28 @@ void cpsk::MainHelper::showHelp()
 }
 void cpsk::MainHelper::showVersion()
 {
-    Misc::drawLineTransition(60,50);
-    Misc::transitionText(std::string("\tCompetitive Programming Starters Kit (CPSK)"),100);
-    Misc::drawLineTransition(60,50);
+    Misc::drawLineTransition(60, 50);
+    Misc::transitionText(std::string("\tCompetitive Programming Starters Kit (CPSK)"), 100);
+    Misc::drawLineTransition(60, 50);
     Misc::transitionText(std::string("Version 0.1"));
+}
+bool cpsk::MainHelper::produceSource(std::string &file_name)
+{
+    return cpsk::MainHelper::produceSource(file_name.c_str());
+}
+bool cpsk::MainHelper::produceSource(const char *file_name)
+{
+    try
+    {
+        std::fstream template_file("TEMPLATE", std::ios::in);
+        std::fstream output_file(file_name, std::ios::trunc | std::ios::out);
+        // @TODO: get current working directory
+        std::cout << file_name << " successfully created." << std::endl;
+        return true;
+    }
+    catch (...)
+    {
+        std::cerr << "Error occured" << std::endl;
+        return false;
+    }
 }

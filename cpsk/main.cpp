@@ -14,6 +14,7 @@
  *   limitations under the License.
  */
 #include <iostream>
+#include <fstream>
 #include <cstring>
 #include <unordered_map>
 #include "MainHelper.h"
@@ -35,7 +36,8 @@ int main(int argc, char *argv[])
         }
         else
         {
-            
+            cpsk::MainHelper::produceSource("hello.cpp");
+            // @TODO: Filename to be parsed from the CLI
         }
     }
     else if (argc%2 == 0)
@@ -44,13 +46,8 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
     else{
-        std::unordered_map<std::string, std::string> param_map = cpsk::ArgumentParser::parse(argc,argv);
-        FILE *template_file_pointer = fopen("TEMPLATE","r");                                // @TODO: get source directory and add it to path
-        FILE *output_file_pointer = fopen(param_map[std::string("filename")].c_str(),"w");  // @TODO: get current working directory
+        // std::unordered_map<std::string, std::string> param_map = cpsk::ArgumentParser::parse(argc,argv);
         
-        fclose(template_file_pointer);
-        fclose(output_file_pointer);
-        return EXIT_SUCCESS;
     }
     return EXIT_SUCCESS;
 }
