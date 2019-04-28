@@ -20,6 +20,8 @@
 #include "MainHelper.h"
 #include "ArgumentParser.h"
 
+using namespace std;
+
 int main(int argc, char *argv[])
 {
     if (argc == 1)
@@ -30,24 +32,38 @@ int main(int argc, char *argv[])
         {
             cpsk::MainHelper::showHelp();
         }
-        else if(strcmp(argv[1], "--version") == 0 || strcmp(argv[1], "-v") == 0)
+        else if (strcmp(argv[1], "--version") == 0 || strcmp(argv[1], "-v") == 0)
         {
             cpsk::MainHelper::showVersion();
         }
         else
         {
-            cpsk::MainHelper::produceSource("hello.cpp");
-            // @TODO: Filename to be parsed from the CLI
+            string file_name = string(argv[1]);
+            int file_name_length = file_name.size();
+            string match(".cpp");
+            if (file_name.size() > 4)
+            {
+                if (file_name.substr(file_name_length - 4, file_name_length) != match)
+                    file_name += ".cpp";
+            }
+            else
+            {
+                file_name += ".cpp";
+            }
+            cpsk::MainHelper::produceSource(file_name);
+            cout << file_name << " successfully generated" << endl;
         }
     }
-    else if (argc%2 == 0)
+    else if (argc & 1)
     {
-        std::cerr << "Check whether you have selected the right flags." << std::endl;
+        // @TODO
+        unordered_map<string, string> param_map = cpsk::ArgumentParser::parse(argc, argv);
+    }
+    else
+    {
+        cerr << "Check whether you have selected the right flags." << endl;
         return EXIT_FAILURE;
     }
-    else{
-        // std::unordered_map<std::string, std::string> param_map = cpsk::ArgumentParser::parse(argc,argv);
-        
-    }
+
     return EXIT_SUCCESS;
 }

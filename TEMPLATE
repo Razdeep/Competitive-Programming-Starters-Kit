@@ -1,12 +1,17 @@
 #include <bits/stdc++.h>
 #define all(v) v.begin(), v.end()
+
+#define FORN(i, n) for (__typeof(i) i = 0; i < n; i++)
+
 using namespace std;
+
 typedef long long ll;
 
 int main()
 {
     ios::sync_with_stdio(false);
-    cin.tie(0);
+    cin.tie(NULL);
+    cout.tie(NULL);
     
     return 0;
 }

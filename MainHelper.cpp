@@ -18,6 +18,8 @@
 #include "MainHelper.h"
 #include "Misc.h"
 
+#define MAX 1000000
+
 void cpsk::MainHelper::showHelp()
 {
     // @TODO
@@ -41,6 +43,15 @@ bool cpsk::MainHelper::produceSource(const char *file_name)
         std::fstream template_file("TEMPLATE", std::ios::in);
         std::fstream output_file(file_name, std::ios::trunc | std::ios::out);
         // @TODO: get current working directory
+        char buffer[MAX];
+        while (!template_file.eof())
+        {
+            template_file.getline(buffer, MAX);
+            output_file << buffer;
+            output_file << std::endl;
+        }
+        template_file.close();
+        output_file.close();
         std::cout << file_name << " successfully created." << std::endl;
         return true;
     }
