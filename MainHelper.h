@@ -23,8 +23,6 @@ namespace cpsk{
     public:
       static void showHelp(); // Shows help if specified in command line flag
       static void showVersion(); // Shows help if specified in command line flag
-      static bool produceSource(std::string& file_name); // Produces output code
-      static bool produceSource(const char *filename); // Produces output code
   };
 }
 #endif

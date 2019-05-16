@@ -19,6 +19,7 @@
 #include <unordered_map>
 #include "MainHelper.h"
 #include "ArgumentParser.h"
+#include "SourceFile.h"
 
 using namespace std;
 
@@ -39,19 +40,11 @@ int main(int argc, char *argv[])
         else
         {
             string file_name = string(argv[1]);
-            int file_name_length = file_name.size();
-            string match(".cpp");
-            if (file_name.size() > 4)
-            {
-                if (file_name.substr(file_name_length - 4, file_name_length) != match)
-                    file_name += ".cpp";
-            }
+            cpsk::SourceFile source_file(file_name);
+            if (source_file.produceSource())            
+                cout << file_name << " successfully generated" << endl;
             else
-            {
-                file_name += ".cpp";
-            }
-            cpsk::MainHelper::produceSource(file_name);
-            cout << file_name << " successfully generated" << endl;
+                cout << file_name << " generation failed" << endl;
         }
     }
     else if (argc & 1)

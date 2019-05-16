@@ -26,6 +26,7 @@ namespace cpsk{
             string header_text;
             void commonUtils();
                 // @brief Redundant procedures of the contructors
+            bool ensureExtension();
         public:
             SourceFile() : file_name(string("01")), comments_enabled(true) {}
             SourceFile(const string& file_name);

@@ -15,35 +15,85 @@
  */
 #include "SourceFile.h"
 #include <iostream>
-
-void cpsk::SourceFile::commonUtils(){
-    // @TODO
+#include <fstream>
+#define MAX 100000
+void cpsk::SourceFile::commonUtils()
+{
+    this->ensureExtension();
 }
-cpsk::SourceFile::SourceFile(const string& file_name)
+cpsk::SourceFile::SourceFile(const string &file_name)
 {
     this->file_name = file_name;
     comments_enabled = true;
+    this->commonUtils();
 }
 cpsk::SourceFile::SourceFile(const char *file_name)
 {
     this->file_name = string(file_name);
     comments_enabled = true;
+    this->commonUtils();
 }
-void cpsk::SourceFile::toggleComments(){
+void cpsk::SourceFile::toggleComments()
+{
     this->comments_enabled ^= true;
 }
-void cpsk::SourceFile::enableComments(){
+void cpsk::SourceFile::enableComments()
+{
     this->comments_enabled = true;
 }
-void cpsk::SourceFile::disableComments(){
+void cpsk::SourceFile::disableComments()
+{
     this->comments_enabled = false;
 }
-string cpsk::SourceFile::getFileName() const{
+string cpsk::SourceFile::getFileName() const
+{
     return file_name;
 }
-bool cpsk::SourceFile::getCommentStatus() const{
+bool cpsk::SourceFile::getCommentStatus() const
+{
     return comments_enabled;
 }
-bool cpsk::SourceFile::produceSource() const{
-    // @TODO
+bool cpsk::SourceFile::produceSource() const
+{
+    try
+    {
+        std::fstream template_file("TEMPLATE", std::ios::in);
+        std::fstream output_file(this->file_name, std::ios::trunc | std::ios::out);
+        // @TODO: get current working directory
+        char buffer[MAX];
+        while (!template_file.eof())
+        {
+            template_file.getline(buffer, MAX);
+            output_file << buffer;
+            output_file << std::endl;
+        }
+        template_file.close();
+        output_file.close();
+        std::cout << file_name << " successfully created." << std::endl;
+        return true;
+    }
+    catch (...)
+    {
+        std::cerr << "Error occured" << std::endl;
+        return false;
+    }
+}
+bool cpsk::SourceFile::ensureExtension()
+{
+    int file_name_length = this->file_name.size();
+    string match(".cpp");
+    if (this->file_name.size() > 4)
+    {
+        if (this->file_name.substr(file_name_length - 4, file_name_length) != match)
+        {
+            this->file_name += ".cpp";
+            return true;
+        }
+    }
+    else
+    {
+        this->file_name += ".cpp";
+        return true;
+    }
+    return false;
 }
