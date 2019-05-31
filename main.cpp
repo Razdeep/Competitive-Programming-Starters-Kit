@@ -20,43 +20,56 @@
 #include "MainHelper.h"
 #include "ArgumentParser.h"
 #include "SourceFile.h"
+#include "core/exceptions/BaseException.h"
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-    if (argc == 1)
-        cpsk::MainHelper::showHelp();
-    else if (argc == 2)
+    try
     {
-        if (strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "-h") == 0)
-        {
+        if (argc == 1)
             cpsk::MainHelper::showHelp();
-        }
-        else if (strcmp(argv[1], "--version") == 0 || strcmp(argv[1], "-v") == 0)
+        else if (argc == 2)
         {
-            cpsk::MainHelper::showVersion();
+            if (strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "-h") == 0)
+            {
+                cpsk::MainHelper::showHelp();
+            }
+            else if (strcmp(argv[1], "--version") == 0 || strcmp(argv[1], "-v") == 0)
+            {
+                cpsk::MainHelper::showVersion();
+            }
+            else if (strcmp(string(argv[1]).substr(0, 2).c_str(), "--") == 0)
+            {
+                // Throw file name exception
+                throw cpsk::exceptions::FileNameException();
+            }
+            else
+            {
+                string file_name = string(argv[1]);
+                cpsk::SourceFile source_file(file_name);
+                if (source_file.produceSource())
+                    cout << file_name << " successfully generated" << endl;
+                else
+                    cout << file_name << " generation failed" << endl;
+            }
+        }
+        else if (argc & 1)
+        {
+            // @TODO
+            unordered_map<string, string> param_map = cpsk::ArgumentParser::parse(argc, argv);
         }
         else
         {
-            string file_name = string(argv[1]);
-            cpsk::SourceFile source_file(file_name);
-            if (source_file.produceSource())            
-                cout << file_name << " successfully generated" << endl;
-            else
-                cout << file_name << " generation failed" << endl;
+            cerr << "Check whether you have selected the right flags." << endl;
+            return EXIT_FAILURE;
         }
     }
-    else if (argc & 1)
+    catch (...)
     {
-        // @TODO
-        unordered_map<string, string> param_map = cpsk::ArgumentParser::parse(argc, argv);
-    }
-    else
-    {
-        cerr << "Check whether you have selected the right flags." << endl;
+        cerr << "Exception caught. @TODO Customization" << endl;
         return EXIT_FAILURE;
     }
-
     return EXIT_SUCCESS;
 }

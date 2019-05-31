@@ -27,7 +27,13 @@ namespace cpsk
         class InvalidConstructor: public std::exception{
             public:
             InvalidConstructor(){
-                std::cout<<"Invalid Constructor Exception"<<std::endl;
+                std::cout << "Invalid Constructor Exception" << std::endl;
+            }
+        };
+        class FileNameException: public std::exception{
+            public:
+            FileNameException(){
+                std::cout << "FileName Exception" << std::endl;
             }
         };
         class BaseException: public std::exception{

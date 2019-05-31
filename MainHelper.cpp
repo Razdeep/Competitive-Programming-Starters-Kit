@@ -27,7 +27,17 @@ void cpsk::MainHelper::showHelp()
 void cpsk::MainHelper::showVersion()
 {
     Misc::drawLineTransition(60, 50);
+    std::string space = "                ";
+    Misc::transitionText(space + " #####  ######   #####  #    #");
+    Misc::transitionText(space + "#     # #     # #     # #   #");
+    Misc::transitionText(space + "#       #     # #       #  # ");
+    Misc::transitionText(space + "#       ######   #####  ###");
+    Misc::transitionText(space + "#       #             # #  #");
+    Misc::transitionText(space + "#     # #       #     # #   #");
+    Misc::transitionText(space + " #####  #        #####  #    # ");
+    Misc::drawLineTransition(60, 50);
     Misc::transitionText(std::string("\tCompetitive Programming Starters Kit (CPSK)"), 100);
+    Misc::transitionText(std::string("\t\tby Rajdeep Roy Chowdhury"), 100);
     Misc::drawLineTransition(60, 50);
     Misc::transitionText(std::string("Version 0.1"));
 }

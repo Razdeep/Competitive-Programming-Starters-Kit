@@ -46,7 +46,7 @@ void cpsk::Misc::drawLine(const char ch, int n = 50)
 }
 void cpsk::Misc::drawLineTransition(unsigned int length, unsigned int delayms)
 {
-    for (int i = 0; i < length; i++)
+    for (uint8_t i = 0; i < length; i++)
     {
         std::cout << "-";
         std::cout.flush();
@@ -66,7 +66,7 @@ void cpsk::Misc::drawLineTransition(const char ch, int n = 50, int ms = 50)
 }
 void cpsk::Misc::transitionText(const std::string& str, int ms)
 {
-    for (int i = 0; i < str.size(); i++)
+    for (uint8_t i = 0; i < str.size(); i++)
     {
         std::cout << str[i];
         std::cout.flush();
