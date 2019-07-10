@@ -13,7 +13,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-#include "Misc.h"
+#include "../include/Misc.h"
 void cpsk::Misc::delay()
 {
     for (int i = 0; i < 100000; i++)

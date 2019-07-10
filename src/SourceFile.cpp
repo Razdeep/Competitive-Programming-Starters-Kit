@@ -13,7 +13,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-#include "SourceFile.h"
+#include "../include/SourceFile.h"
 #include <iostream>
 #include <fstream>
 #define MAX 100000

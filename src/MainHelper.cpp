@@ -15,8 +15,8 @@
  */
 #include <unordered_map>
 #include <fstream>
-#include "MainHelper.h"
-#include "Misc.h"
+#include "../include/MainHelper.h"
+#include "../include/Misc.h"
 
 #define MAX 1000000
 
