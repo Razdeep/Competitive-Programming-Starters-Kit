@@ -14,6 +14,7 @@ A tool for bootstrapping  boilerplate code in Competitive Programming Contests a
 ## Dependencies
  - g++
  - clang-format
+ - cmake
 
 ## Building & Installing from source
  - Open terminal and navigate to your working directory.
@@ -21,8 +22,9 @@ A tool for bootstrapping  boilerplate code in Competitive Programming Contests a
  ```bash
  $ git clone https://github.com/razdeep/Competitive-Programming-Starters-Kit.git
  $ cd Competitive-Programming-Starters-Kit
- $ make all
- $ make install
+ $ mkdir build && cd build
+ $ cmake ..
+ $ make -j4
  ```
 
 ## How to use
@@ -34,8 +36,8 @@ A tool for bootstrapping  boilerplate code in Competitive Programming Contests a
 ## Supported Platforms
  - Linux
  - Android (Coming Soon)
- - MacOs (Coming Soon)
- - WIndows (Coming Soon)
+ - MacOs 
+ - Windows (Coming Soon)
 
 ## License
 Licensed under the Apache License, Version 2.0 (the "License");

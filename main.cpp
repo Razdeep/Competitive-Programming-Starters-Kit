@@ -17,9 +17,9 @@
 #include <fstream>
 #include <cstring>
 #include <unordered_map>
-#include "include/MainHelper.h"
-#include "include/ArgumentParser.h"
-#include "include/SourceFile.h"
+#include "MainHelper.h"
+#include "ArgumentParser.h"
+#include "SourceFile.h"
 #include "core/exceptions/BaseException.h"
 
 using namespace std;

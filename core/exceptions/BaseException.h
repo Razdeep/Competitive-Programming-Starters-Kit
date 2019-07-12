@@ -29,11 +29,17 @@ namespace cpsk
             InvalidConstructor(){
                 std::cout << "Invalid Constructor Exception" << std::endl;
             }
+            const char *what() const noexcept override {
+                return "Invalid Constructor Exception";
+            }
         };
         class FileNameException: public std::exception{
             public:
             FileNameException(){
                 std::cout << "FileName Exception" << std::endl;
+            }
+            const char *what() const noexcept override {
+                return "Invalid Constructor Exception";
             }
         };
         class BaseException: public std::exception{
@@ -44,6 +50,9 @@ namespace cpsk
             }
             BaseException(int a){
                 InvalidConstructor();
+            }
+            const char *what() const noexcept override {
+                return "Invalid Constructor Exception";
             }
             explicit BaseException(std::string message): message(message){}
             

@@ -13,7 +13,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-#include "../include/SourceFile.h"
+#include "SourceFile.h"
 #include <iostream>
 #include <fstream>
 #define MAX 100000
@@ -55,10 +55,11 @@ bool cpsk::SourceFile::getCommentStatus() const
 }
 bool cpsk::SourceFile::produceSource() const
 {
-    try
-    {
-        std::fstream template_file("TEMPLATE", std::ios::in);
-        std::fstream output_file(this->file_name, std::ios::trunc | std::ios::out);
+    std::fstream template_file;
+    std::fstream output_file;
+    try {
+        template_file.open("/root/.cpsk/TEMPLATE", std::ios::in);
+        output_file.open(this->file_name, std::ios::trunc | std::ios::out);
         // @TODO: get current working directory
         char buffer[MAX];
         while (!template_file.eof())
@@ -71,12 +72,13 @@ bool cpsk::SourceFile::produceSource() const
         output_file.close();
         std::cout << file_name << " successfully created." << std::endl;
         return true;
-    }
-    catch (...)
-    {
+
+    } catch (...) {
         std::cerr << "Error occured" << std::endl;
         return false;
     }
+    template_file.close();
+    output_file.close();
 }
 bool cpsk::SourceFile::ensureExtension()
 {
