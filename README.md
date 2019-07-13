@@ -27,6 +27,19 @@ A tool for bootstrapping  boilerplate code in Competitive Programming Contests a
  $ make -j4
  ```
 
+## Building in Docker
+ - Install docker from [here](https://www.docker.com/get-started)
+ - Navigate to the project root directory
+ - Build the docker image by running the command
+ ```bash
+ $ docker build -t cpsk .
+ ```
+ - Run the docker image
+ ```bash
+ $ docker run -v $PWD:/app -it cpsk
+ ```
+ - The rest of the steps are similar to whatever mentioned above.
+ 
 ## How to use
 1. Make sure you have installed CPSK. You can verify your installation by running the command `cpsk --version`.
 2. Generate the source files by running the command `cpsk <FILENAME>`.
