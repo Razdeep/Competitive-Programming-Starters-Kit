@@ -14,8 +14,10 @@
  *   limitations under the License.
  */
 #include "SourceFile.h"
+#include "BaseException.h"
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 #define MAX 100000
 void cpsk::SourceFile::commonUtils()
 {
@@ -58,10 +60,16 @@ bool cpsk::SourceFile::produceSource() const
     std::fstream template_file;
     std::fstream output_file;
     try {
-        template_file.open("/root/.cpsk/TEMPLATE", std::ios::in);
+        std::string file_name = "TEMPLATE";
+        std::string file_name_path = getenv("HOME");
+        file_name_path += "/.cpsk/";
+        file_name_path += file_name;
+        template_file.open(file_name_path, std::ios::in);
         output_file.open(this->file_name, std::ios::trunc | std::ios::out);
-        // @TODO: get current working directory
         char buffer[MAX];
+        if (!template_file) {
+            throw new cpsk::exceptions::FileNameException();
+        }
         while (!template_file.eof())
         {
             template_file.getline(buffer, MAX);
@@ -73,12 +81,20 @@ bool cpsk::SourceFile::produceSource() const
         std::cout << file_name << " successfully created." << std::endl;
         return true;
 
+    } catch (exception e) {
+        std::cerr << e.what() << std::endl;
+        template_file.close();
+        output_file.close();
+        return false;
     } catch (...) {
         std::cerr << "Error occured" << std::endl;
+        template_file.close();
+        output_file.close();
         return false;
     }
     template_file.close();
     output_file.close();
+    return true;
 }
 bool cpsk::SourceFile::ensureExtension()
 {

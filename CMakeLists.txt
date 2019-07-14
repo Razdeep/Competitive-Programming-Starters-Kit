@@ -4,6 +4,7 @@ project("cpsk")
 set(CMAKE_CXX_STANDARD 14)
 
 include_directories(include)
+include_directories(core/exceptions)
 file(GLOB_RECURSE sources "src/*.cpp")
 
 file(MAKE_DIRECTORY ~/.cpsk)
