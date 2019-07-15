@@ -9,6 +9,6 @@ file(GLOB_RECURSE sources "src/*.cpp")
 
 file(MAKE_DIRECTORY ~/.cpsk)
 file(COPY TEMPLATE
-    DESTINATION $ENV{HOME}/.cpsk)
+        DESTINATION $ENV{HOME}/.cpsk)
 
 add_executable(cpsk main.cpp ${sources})

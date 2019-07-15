@@ -18,45 +18,46 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+
 #define MAX 100000
-void cpsk::SourceFile::commonUtils()
-{
+
+void cpsk::SourceFile::commonUtils() {
     this->ensureExtension();
 }
-cpsk::SourceFile::SourceFile(const string &file_name)
-{
+
+cpsk::SourceFile::SourceFile(const string &file_name) {
     this->file_name = file_name;
     comments_enabled = true;
     this->commonUtils();
 }
-cpsk::SourceFile::SourceFile(const char *file_name)
-{
+
+cpsk::SourceFile::SourceFile(const char *file_name) {
     this->file_name = string(file_name);
     comments_enabled = true;
     this->commonUtils();
 }
-void cpsk::SourceFile::toggleComments()
-{
+
+void cpsk::SourceFile::toggleComments() {
     this->comments_enabled ^= true;
 }
-void cpsk::SourceFile::enableComments()
-{
+
+void cpsk::SourceFile::enableComments() {
     this->comments_enabled = true;
 }
-void cpsk::SourceFile::disableComments()
-{
+
+void cpsk::SourceFile::disableComments() {
     this->comments_enabled = false;
 }
-string cpsk::SourceFile::getFileName() const
-{
+
+string cpsk::SourceFile::getFileName() const {
     return file_name;
 }
-bool cpsk::SourceFile::getCommentStatus() const
-{
+
+bool cpsk::SourceFile::getCommentStatus() const {
     return comments_enabled;
 }
-bool cpsk::SourceFile::produceSource() const
-{
+
+bool cpsk::SourceFile::produceSource() const {
     std::fstream template_file;
     std::fstream output_file;
     try {
@@ -70,8 +71,7 @@ bool cpsk::SourceFile::produceSource() const
         if (!template_file) {
             throw new cpsk::exceptions::FileNameException();
         }
-        while (!template_file.eof())
-        {
+        while (!template_file.eof()) {
             template_file.getline(buffer, MAX);
             output_file << buffer;
             output_file << std::endl;
@@ -96,20 +96,16 @@ bool cpsk::SourceFile::produceSource() const
     output_file.close();
     return true;
 }
-bool cpsk::SourceFile::ensureExtension()
-{
+
+bool cpsk::SourceFile::ensureExtension() {
     int file_name_length = this->file_name.size();
     string match(".cpp");
-    if (this->file_name.size() > 4)
-    {
-        if (this->file_name.substr(file_name_length - 4, file_name_length) != match)
-        {
+    if (this->file_name.size() > 4) {
+        if (this->file_name.substr(file_name_length - 4, file_name_length) != match) {
             this->file_name += ".cpp";
             return true;
         }
-    }
-    else
-    {
+    } else {
         this->file_name += ".cpp";
         return true;
     }

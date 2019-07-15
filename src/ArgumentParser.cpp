@@ -15,12 +15,11 @@
  */
 #include <unordered_map>
 #include "ArgumentParser.h"
-std::unordered_map<std::string, std::string> cpsk::ArgumentParser::parse(int argc, char *argv[])
-{
+
+std::unordered_map<std::string, std::string> cpsk::ArgumentParser::parse(int argc, char *argv[]) {
     // @TODO Put the value having blank key to the key 'filename'
     std::unordered_map<std::string, std::string> param_map;
-    for (int i = 0; i < argc; i += 2)
-    {
+    for (int i = 0; i < argc; i += 2) {
         param_map[argv[i]] = argv[i + 1];
     }
     return param_map;

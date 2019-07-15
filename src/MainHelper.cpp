@@ -20,12 +20,11 @@
 
 #define MAX 1000000
 
-void cpsk::MainHelper::showHelp()
-{
+void cpsk::MainHelper::showHelp() {
     std::cout << "To create a source file quickly, type `cpsk <FILENAME>`" << std::endl;
 }
-void cpsk::MainHelper::showVersion()
-{
+
+void cpsk::MainHelper::showVersion() {
     Misc::drawLineTransition(60, 50);
     std::string space = "                ";
     Misc::transitionText(space + " #####  ######   #####  #    #");

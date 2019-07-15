@@ -15,14 +15,15 @@
  */
 #ifndef __MAIN_HELPER_H
 #define __MAIN_HELPER_H
+
 #include <iostream>
 #include <unordered_map>
-namespace cpsk{
-  class MainHelper
-  {
+
+namespace cpsk {
+    class MainHelper {
     public:
-      static void showHelp(); // Shows help if specified in command line flag
-      static void showVersion(); // Shows help if specified in command line flag
-  };
+        static void showHelp(); // Shows help if specified in command line flag
+        static void showVersion(); // Shows help if specified in command line flag
+    };
 }
 #endif

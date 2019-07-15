@@ -20,42 +20,47 @@
 #include <iostream>
 #include <exception>
 
-namespace cpsk
-{
-    namespace exceptions
-    {
-        class InvalidConstructor: public std::exception{
-            public:
-            InvalidConstructor(){
+namespace cpsk {
+    namespace exceptions {
+        class InvalidConstructor : public std::exception {
+        public:
+            InvalidConstructor() {
                 std::cout << "Invalid Constructor Exception" << std::endl;
             }
+
             const char *what() const noexcept override {
                 return "Invalid Constructor Exception";
             }
         };
-        class FileNameException: public std::exception{
-            public:
-            FileNameException(){
+
+        class FileNameException : public std::exception {
+        public:
+            FileNameException() {
                 std::cout << "FileName Exception" << std::endl;
             }
+
             const char *what() const noexcept override {
                 return "FileName Exception";
             }
         };
-        class BaseException: public std::exception{
+
+        class BaseException : public std::exception {
             std::string message;
-            public:
-            BaseException(){
+        public:
+            BaseException() {
                 InvalidConstructor();
             }
-            BaseException(int a){
+
+            BaseException(int a) {
                 InvalidConstructor();
             }
+
             const char *what() const noexcept override {
                 return "Base Exception";
             }
-            explicit BaseException(std::string message): message(message){}
-            
+
+            explicit BaseException(std::string message) : message(message) {}
+
         };
     }; // namespace exceptions
 }; // namespace cpsk

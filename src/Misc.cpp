@@ -14,60 +14,57 @@
  *   limitations under the License.
  */
 #include "Misc.h"
-void cpsk::Misc::delay()
-{
-    for (int i = 0; i < 100000; i++)
-        for (int j = 0; j < 1000; j++)
-            ;
+
+void cpsk::Misc::delay() {
+    for (int i = 0; i < 100000; i++) {
+        for (int j = 0; j < 1000; j++) {
+
+        }
+    }
 }
-void cpsk::Misc::delay(const long int ms)
-{
+
+void cpsk::Misc::delay(const long int ms) {
     // @TODO
-    for (int i = 0; i < 10000; i++)
-        for (int j = 0; j < 1000; j++)
-            ;
+    for (int i = 0; i < 10000; i++) {
+        for (int j = 0; j < 1000; j++) {
+
+        }
+    }
 }
-void cpsk::Misc::drawLine(int n = 50)
-{
-    for (int i = 0; i < n; i++)
-    {
+
+void cpsk::Misc::drawLine(int n = 50) {
+    for (int i = 0; i < n; i++) {
         std::cout << "-";
     }
     std::cout << std::endl;
 }
-void cpsk::Misc::drawLine(const char ch, int n = 50)
-{
-    int i;
-    for (i = 0; i < n; i++)
-    {
+
+void cpsk::Misc::drawLine(const char ch, int n = 50) {
+    for (int i = 0; i < n; i++) {
         std::cout << ch;
     }
     std::cout << std::endl;
 }
-void cpsk::Misc::drawLineTransition(unsigned int length, unsigned int delayms)
-{
-    for (uint8_t i = 0; i < length; i++)
-    {
+
+void cpsk::Misc::drawLineTransition(unsigned int length, unsigned int delayms) {
+    for (uint8_t i = 0; i < length; i++) {
         std::cout << "-";
         std::cout.flush();
         delay(100);
     }
     std::cout << std::endl;
 }
-void cpsk::Misc::drawLineTransition(const char ch, int n = 50, int ms = 50)
-{
-    int i;
-    for (i = 0; i < n; i++)
-    {
+
+void cpsk::Misc::drawLineTransition(const char ch, int n = 50, int ms = 50) {
+    for (int i = 0; i < n; i++) {
         std::cout << ch;
         delay(100);
     }
     std::cout << std::endl;
 }
-void cpsk::Misc::transitionText(const std::string& str, int ms)
-{
-    for (uint8_t i = 0; i < str.size(); i++)
-    {
+
+void cpsk::Misc::transitionText(const std::string &str, int ms) {
+    for (uint8_t i = 0; i < str.size(); i++) {
         std::cout << str[i];
         std::cout.flush();
         delay(ms);

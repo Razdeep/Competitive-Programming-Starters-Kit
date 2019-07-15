@@ -15,14 +15,15 @@
  */
 #ifndef __ARGUMENT_PARSER_H
 #define __ARGUMENT_PARSER_H
+
 #include <iostream>
 #include <unordered_map>
-namespace cpsk{
-  class ArgumentParser
-  {
+
+namespace cpsk {
+    class ArgumentParser {
     public:
-      // Parses the parameter list specified in the CLI
-      static std::unordered_map<std::string, std::string> parse(int argc, char *argv[]);
-  };
+        // Parses the parameter list specified in the CLI
+        static std::unordered_map<std::string, std::string> parse(int argc, char *argv[]);
+    };
 }
 #endif

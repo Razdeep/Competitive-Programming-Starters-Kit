@@ -14,29 +14,40 @@
  *   limitations under the License.
  */
 #include <iostream>
+
 using namespace std;
 #ifndef __SOURCE_FILE_H
 #define __SOURCE_FILE_H
-namespace cpsk{
-    class SourceFile
-    {
-        private:
-            string file_name;
-            bool comments_enabled;
-            string header_text;
-            void commonUtils();
-                // @brief Redundant procedures of the contructors
-            bool ensureExtension();
-        public:
-            SourceFile() : file_name(string("01")), comments_enabled(true) {}
-            SourceFile(const string& file_name);
-            SourceFile(const char* file_name);
-            void toggleComments();
-            void enableComments();
-            void disableComments();
-            string getFileName() const;
-            bool getCommentStatus() const;
-            bool produceSource() const;
+namespace cpsk {
+    class SourceFile {
+    private:
+        string file_name;
+        bool comments_enabled;
+        string header_text;
+
+        void commonUtils();
+
+        // @brief Redundant procedures of the contructors
+        bool ensureExtension();
+
+    public:
+        SourceFile() : file_name(string("01")), comments_enabled(true) {}
+
+        SourceFile(const string &file_name);
+
+        SourceFile(const char *file_name);
+
+        void toggleComments();
+
+        void enableComments();
+
+        void disableComments();
+
+        string getFileName() const;
+
+        bool getCommentStatus() const;
+
+        bool produceSource() const;
     };
 }
 #endif
