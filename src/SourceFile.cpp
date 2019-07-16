@@ -19,7 +19,21 @@
 #include <fstream>
 #include <cstdlib>
 
-#define MAX 100000
+#ifdef WINDOWS
+#include <direct.h>
+std::string getCurrentDirectory() {
+    return std::string(_getcwd());
+}
+#else
+#include <unistd.h>
+std::string getCurrentDirectory() {
+    constexpr int MAX = int(1e5);
+    char res[MAX];
+    return (getcwd(res, MAX) ? std::string(res): std::string(""));
+}
+#endif
+
+constexpr int MAX = int(1e5);
 
 void cpsk::SourceFile::commonUtils() {
     this->ensureExtension();
@@ -66,11 +80,15 @@ bool cpsk::SourceFile::produceSource() const {
         file_name_path += "/.cpsk/";
         file_name_path += file_name;
         template_file.open(file_name_path, std::ios::in);
-        output_file.open(this->file_name, std::ios::trunc | std::ios::out);
-        char buffer[MAX];
         if (!template_file) {
-            throw new cpsk::exceptions::FileNameException();
+            throw new cpsk::exceptions::FileNotFoundException();
         }
+        std::string output_file_name_path = getCurrentDirectory() + "/" + this->file_name;
+        output_file.open(output_file_name_path, std::ios::trunc | std::ios::out);
+        if (!output_file) {
+            throw new cpsk::exceptions::FileCreationException();
+        }
+        char buffer[MAX];
         while (!template_file.eof()) {
             template_file.getline(buffer, MAX);
             output_file << buffer;

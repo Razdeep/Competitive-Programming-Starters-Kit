@@ -33,6 +33,28 @@ namespace cpsk {
             }
         };
 
+        class FileNotFoundException : public std::exception {
+        public:
+            FileNotFoundException() {
+                std::cout << "FileNotFound Exception" << std::endl;
+            }
+
+            const char *what() const noexcept override {
+                return "FileNotFound Exception";
+            }
+        };
+
+        class FileCreationException : public std::exception {
+        public:
+            FileCreationException() {
+                std::cout << "FileCreation Exception" << std::endl;
+            }
+
+            const char *what() const noexcept override {
+                return "FileCreation Exception";
+            }
+        };
+
         class FileNameException : public std::exception {
         public:
             FileNameException() {
