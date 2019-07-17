@@ -12,3 +12,6 @@ file(COPY TEMPLATE
         DESTINATION $ENV{HOME}/.cpsk)
 
 add_executable(cpsk main.cpp ${sources})
+
+install(TARGETS cpsk
+        DESTINATION bin)

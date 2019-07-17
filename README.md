@@ -23,8 +23,8 @@ A tool for bootstrapping  boilerplate code in Competitive Programming Contests a
  $ git clone https://github.com/razdeep/Competitive-Programming-Starters-Kit.git
  $ cd Competitive-Programming-Starters-Kit
  $ mkdir build && cd build
- $ cmake ..
- $ make -j4
+ $ cmake .. && cmake --build .
+ $ sudo make install
  ```
 
 ## Building in Docker
@@ -48,9 +48,8 @@ A tool for bootstrapping  boilerplate code in Competitive Programming Contests a
 
 ## Supported Platforms
  - Linux
- - Android (Coming Soon)
- - MacOs 
- - Windows (Coming Soon)
+ - Mac Os 
+ - Windows
 
 ## License
 Licensed under the Apache License, Version 2.0 (the "License");
