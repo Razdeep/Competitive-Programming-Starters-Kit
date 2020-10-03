@@ -35,40 +35,36 @@ std::string getCurrentDirectory() {
 
 constexpr int MAX = int(1e5);
 
-void cpsk::SourceFile::commonUtils() {
-    this->ensureExtension();
-}
-
-cpsk::SourceFile::SourceFile(const string &file_name) {
-    this->file_name = file_name;
-    comments_enabled = true;
-    this->commonUtils();
+cpsk::SourceFile::SourceFile(const std::string &file_name) {
+    mFileName = file_name;
+    mIsCommentsEnabled = true;
+    ensureExtension();
 }
 
 cpsk::SourceFile::SourceFile(const char *file_name) {
-    this->file_name = string(file_name);
-    comments_enabled = true;
-    this->commonUtils();
+    mFileName = std::string(file_name);
+    mIsCommentsEnabled = true;
+    ensureExtension();
 }
 
 void cpsk::SourceFile::toggleComments() {
-    this->comments_enabled ^= true;
+    mIsCommentsEnabled ^= true;
 }
 
 void cpsk::SourceFile::enableComments() {
-    this->comments_enabled = true;
+    mIsCommentsEnabled = true;
 }
 
 void cpsk::SourceFile::disableComments() {
-    this->comments_enabled = false;
+    mIsCommentsEnabled = false;
 }
 
-string cpsk::SourceFile::getFileName() const {
-    return file_name;
+std::string cpsk::SourceFile::getFileName() const {
+    return mFileName;
 }
 
 bool cpsk::SourceFile::getCommentStatus() const {
-    return comments_enabled;
+    return mIsCommentsEnabled;
 }
 
 bool cpsk::SourceFile::produceSource() const {
@@ -83,7 +79,7 @@ bool cpsk::SourceFile::produceSource() const {
         if (!template_file) {
             throw new cpsk::exceptions::FileNotFoundException();
         }
-        std::string output_file_name_path = getCurrentDirectory() + "/" + this->file_name;
+        std::string output_file_name_path = getCurrentDirectory() + "/" + mFileName;
         output_file.open(output_file_name_path, std::ios::trunc | std::ios::out);
         if (!output_file) {
             throw new cpsk::exceptions::FileCreationException();
@@ -97,15 +93,13 @@ bool cpsk::SourceFile::produceSource() const {
         template_file.close();
         output_file.close();
         std::cout << file_name << " successfully created." << std::endl;
-        return true;
-
-    } catch (exception e) {
+    } catch (std::exception e) {
         std::cerr << e.what() << std::endl;
         template_file.close();
         output_file.close();
         return false;
     } catch (...) {
-        std::cerr << "Error occured" << std::endl;
+        std::cerr << "Error occurred" << std::endl;
         template_file.close();
         output_file.close();
         return false;
@@ -115,17 +109,20 @@ bool cpsk::SourceFile::produceSource() const {
     return true;
 }
 
-bool cpsk::SourceFile::ensureExtension() {
-    int file_name_length = this->file_name.size();
-    string match(".cpp");
-    if (this->file_name.size() > 4) {
-        if (this->file_name.substr(file_name_length - 4, file_name_length) != match) {
-            this->file_name += ".cpp";
-            return true;
+bool cpsk::SourceFile::hasCorrectExtension() const {
+    const std::string expected_extension = ".cpp";
+    int file_name_length = int(mFileName.size());
+    return mFileName.substr(file_name_length - 4, file_name_length) == expected_extension;
+}
+
+void cpsk::SourceFile::ensureExtension() {
+    int file_name_length = int(mFileName.size());
+
+    if (file_name_length > 4) {
+        if (!hasCorrectExtension()) {
+            mFileName += ".cpp";
         }
     } else {
-        this->file_name += ".cpp";
-        return true;
+        mFileName += ".cpp";
     }
-    return false;
 }

@@ -15,35 +15,32 @@
  */
 #include <iostream>
 
-using namespace std;
 #ifndef __SOURCE_FILE_H
 #define __SOURCE_FILE_H
+
 namespace cpsk {
     class SourceFile {
     private:
-        string file_name;
-        bool comments_enabled;
-        string header_text;
+        std::string mFileName;
+        bool mIsCommentsEnabled;
+        std::string mHeaderText;
 
-        void commonUtils();
-
-        // @brief Redundant procedures of the contructors
-        bool ensureExtension();
+    protected:
+        bool hasCorrectExtension() const;
+        void ensureExtension();
 
     public:
-        SourceFile() : file_name(string("01")), comments_enabled(true) {}
+        SourceFile() : mFileName(std::string("01")), mIsCommentsEnabled(true) {}
 
-        SourceFile(const string &file_name);
+        SourceFile(const std::string &file_name);
 
         SourceFile(const char *file_name);
 
         void toggleComments();
-
         void enableComments();
-
         void disableComments();
 
-        string getFileName() const;
+        std::string getFileName() const;
 
         bool getCommentStatus() const;
 
