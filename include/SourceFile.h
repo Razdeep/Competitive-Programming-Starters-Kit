@@ -25,10 +25,6 @@ namespace cpsk {
         bool mIsCommentsEnabled;
         std::string mHeaderText;
 
-    protected:
-        bool hasCorrectExtension() const;
-        void ensureExtension();
-
     public:
         SourceFile() : mFileName(std::string("01")), mIsCommentsEnabled(true) {}
 
@@ -44,6 +40,8 @@ namespace cpsk {
 
         bool getCommentStatus() const;
 
+        bool hasCorrectExtension() const;
+        void ensureExtension();
         bool produceSource() const;
     };
 }
