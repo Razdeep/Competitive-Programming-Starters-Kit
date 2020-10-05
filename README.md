@@ -10,6 +10,7 @@ A tool for bootstrapping  boilerplate code in Competitive Programming Contests a
 [![GitHub issues](https://img.shields.io/github/issues/Razdeep/Competitive-Programming-Starters-Kit?style=for-the-badge)](https://github.com/Razdeep/Competitive-Programming-Starters-Kit/issues)
 [![GitHub forks](https://img.shields.io/github/forks/Razdeep/Competitive-Programming-Starters-Kit?style=for-the-badge)](https://github.com/Razdeep/Competitive-Programming-Starters-Kit/network)
 [![HitCount](http://hits.dwyl.io/razdeep/Competitive-Programming-Starters-Kit.svg)](http://hits.dwyl.io/Razdeep/Competitive-Programming-Starters-Kit)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Razdeep/Competitive-Programming-Starters-Kit/automated-tests?style=for-the-badge)](https://github.com/Razdeep/Competitive-Programming-Starters-Kit/actions)
 
 ## Dependencies
  - g++
@@ -39,7 +40,7 @@ A tool for bootstrapping  boilerplate code in Competitive Programming Contests a
  $ docker run -v $PWD:/app -it cpsk
  ```
  - The rest of the steps are similar to whatever mentioned above.
- 
+
 ## How to use
 1. Make sure you have installed CPSK. You can verify your installation by running the command `cpsk --version`.
 2. Generate the source files by running the command `cpsk <FILENAME>`.
@@ -48,7 +49,7 @@ A tool for bootstrapping  boilerplate code in Competitive Programming Contests a
 
 ## Supported Platforms
  - Linux
- - Mac Os 
+ - Mac Os
  - Windows
 
 ## License

@@ -1,0 +1,12 @@
+name: "automated-tests"
+on: [push, pull_request]
+jobs:
+  build:
+    name: "Build project"
+    runs-on: ubuntu-20.04
+    timeout-minutes: 60
+    steps:
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: build
+        run: mkdir build && cd build && cmake .. && cmake --build . && sudo make install
