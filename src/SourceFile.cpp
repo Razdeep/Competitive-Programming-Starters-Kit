@@ -19,10 +19,12 @@
 #include <fstream>
 #include <cstdlib>
 
-#ifdef WINDOWS
+#ifdef _WIN32
 #include <direct.h>
 std::string getCurrentDirectory() {
-    return std::string(_getcwd());
+    constexpr int MAX = int(1e5);
+    char res[MAX];
+    return (getcwd(res, MAX) ? std::string(res): std::string(""));
 }
 #else
 #include <unistd.h>
