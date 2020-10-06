@@ -21,19 +21,23 @@
 
 #ifdef _WIN32
 #include <direct.h>
-std::string getCurrentDirectory() {
-    constexpr int MAX = int(1e5);
-    char res[MAX];
-    return (getcwd(res, MAX) ? std::string(res): std::string(""));
+std::string getHomeDirectory() {
+    std::string home_drive = getenv("HOMEDRIVE");
+    std::string home_path  = getenv("HOMEPATH");
+    return home_drive + home_path;
 }
 #else
 #include <unistd.h>
+std::string getHomeDirectory() {
+    return getenv("HOME");
+}
+#endif
+
 std::string getCurrentDirectory() {
     constexpr int MAX = int(1e5);
     char res[MAX];
     return (getcwd(res, MAX) ? std::string(res): std::string(""));
 }
-#endif
 
 constexpr int MAX = int(1e5);
 
@@ -74,7 +78,7 @@ bool cpsk::SourceFile::produceSource() const {
     std::fstream output_file;
     try {
         std::string file_name = "TEMPLATE";
-        std::string file_name_path = getenv("HOME");
+        std::string file_name_path = getHomeDirectory();
         file_name_path += "/.cpsk/";
         file_name_path += file_name;
         template_file.open(file_name_path, std::ios::in);
