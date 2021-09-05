@@ -1,17 +1,41 @@
-#include <bits/stdc++.h>
+ 
+#include <iostream>
+#include <vector>
+#include <algorithm>
+ 
+#define trace(x) cerr << #x << ": " << x << endl;
 #define all(v) v.begin(), v.end()
-
-#define FORN(i, n) for (__typeof(i) i = 0; i < n; i++)
-
-using namespace std;
-
+#define int ll
+ 
 typedef long long ll;
-
-int main()
-{
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+ 
+using namespace std;
+ 
+void solve() {
     
+	int n;
+	cin >> n;
+
+	vector<int> arr(n);
+
+	for (int i = 0; i < n; ++i) {
+		cin >> arr[i];
+	}
+
+	
+}
+ 
+signed main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int tc = 1;
+    // cin >> tc;
+ 
+    while (tc--) {
+        solve();
+    }
+ 
     return 0;
 }
