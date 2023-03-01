@@ -14,6 +14,6 @@ jobs:
       - id: build-on-windows
         if: matrix.operating-system == 'windows-latest'
         run: mkdir build && cd build && cmake .. && cmake --build . --target INSTALL
-      - id: build-on-ubuntu-macOS
+      - id: tests-for-mac-and-linux
         if: matrix.operating-system == 'macos-latest' || matrix.operating-system == 'ubuntu-20.04'
-        run: mkdir build && cd build && cmake .. && cmake --build . && sudo make install
+        run: mkdir build && cd build && cmake -DBUILD_TESTS=ON .. && cmake --build . && ctest
