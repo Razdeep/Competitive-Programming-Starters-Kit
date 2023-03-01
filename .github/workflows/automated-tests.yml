@@ -11,9 +11,5 @@ jobs:
     steps:
       - id: checkout
         uses: actions/checkout@v2
-      - id: build-on-windows
-        if: matrix.operating-system == 'windows-latest'
-        run: mkdir build && cd build && cmake .. && cmake --build . --target INSTALL
-      - id: build-on-ubuntu-macOS
-        if: matrix.operating-system == 'macos-latest' || matrix.operating-system == 'ubuntu-20.04'
-        run: mkdir build && cd build && cmake .. && cmake --build . && sudo make install
+      - id: test
+        run: mkdir build && cd build && cmake -DBUILD_TESTS=ON .. && cmake --build . && ctest

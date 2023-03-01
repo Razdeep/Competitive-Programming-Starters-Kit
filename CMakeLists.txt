@@ -14,6 +14,7 @@ file(COPY TEMPLATE
 add_executable(cpsk main.cpp ${sources})
 
 IF(BUILD_TESTS)
+    enable_testing()
     add_subdirectory(test)
 ENDIF()
 
