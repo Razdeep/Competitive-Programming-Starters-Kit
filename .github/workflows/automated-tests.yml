@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
       - id: build-on-windows
         if: matrix.operating-system == 'windows-latest'
-        run: mkdir build && cd build && cmake .. && cmake --build . --target INSTAL
+        run: mkdir build && cd build && cmake .. && cmake --build . --target INSTALL
       - id: tests-for-mac-and-linux
         if: matrix.operating-system == 'macos-latest' || matrix.operating-system == 'ubuntu-20.04'
         run: mkdir build && cd build && cmake -DBUILD_TESTS=ON .. && cmake --build . && ctest
