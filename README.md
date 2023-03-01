@@ -1,15 +1,12 @@
-<div align="center">
-  <img src="./resources/logo.png">
-</div>
+![CPSK](./resources/logo.png)
 
 # Competitive Programming Starters Kit
-A tool for bootstrapping  boilerplate code in Competitive Programming Contests as fast as possible
+A tool for bootstrapping boilerplate code in Competitive Programming Contests as fast as possible
 
 [![GitHub license](https://img.shields.io/github/license/Razdeep/Competitive-Programming-Starters-Kit?style=for-the-badge)](https://github.com/Razdeep/Competitive-Programming-Starters-Kit/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/Razdeep/Competitive-Programming-Starters-Kit?style=for-the-badge)](https://github.com/Razdeep/Competitive-Programming-Starters-Kit/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/Razdeep/Competitive-Programming-Starters-Kit?style=for-the-badge)](https://github.com/Razdeep/Competitive-Programming-Starters-Kit/issues)
 [![GitHub forks](https://img.shields.io/github/forks/Razdeep/Competitive-Programming-Starters-Kit?style=for-the-badge)](https://github.com/Razdeep/Competitive-Programming-Starters-Kit/network)
-[![HitCount](http://hits.dwyl.io/razdeep/Competitive-Programming-Starters-Kit.svg)](http://hits.dwyl.io/Razdeep/Competitive-Programming-Starters-Kit)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Razdeep/Competitive-Programming-Starters-Kit/automated-tests?style=for-the-badge)](https://github.com/Razdeep/Competitive-Programming-Starters-Kit/actions)
 
 ## Dependencies
