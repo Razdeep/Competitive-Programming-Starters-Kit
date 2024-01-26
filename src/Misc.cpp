@@ -14,51 +14,36 @@
  *   limitations under the License.
  */
 #include "Misc.h"
+#include "Constant.h"
+
+#ifdef _WIN32
+
+#else
+#include <unistd.h>
+#endif
 
 void cpsk::Misc::delay() {
-    for (int i = 0; i < 100000; i++) {
-        for (int j = 0; j < 1000; j++) {
-
-        }
-    }
+    delay(50);
 }
 
 void cpsk::Misc::delay(const long int ms) {
-    // @TODO
-    for (int i = 0; i < 10000; i++) {
-        for (int j = 0; j < 1000; j++) {
-
-        }
-    }
+    usleep(ms * 1000);
 }
 
-void cpsk::Misc::drawLine(int n = 50) {
-    for (int i = 0; i < n; i++) {
-        std::cout << "-";
-    }
-    std::cout << std::endl;
-}
-
-void cpsk::Misc::drawLine(const char ch, int n = 50) {
+void cpsk::Misc::drawLine(const char ch, int n) {
     for (int i = 0; i < n; i++) {
         std::cout << ch;
     }
     std::cout << std::endl;
 }
 
-void cpsk::Misc::drawLineTransition(unsigned int length, unsigned int delayms) {
+void cpsk::Misc::drawLineTransition(unsigned int length, 
+                                    char ch,
+                                    unsigned int delayms) {
     for (uint8_t i = 0; i < length; i++) {
-        std::cout << "-";
-        std::cout.flush();
-        delay(100);
-    }
-    std::cout << std::endl;
-}
-
-void cpsk::Misc::drawLineTransition(const char ch, int n = 50, int ms = 50) {
-    for (int i = 0; i < n; i++) {
         std::cout << ch;
-        delay(100);
+        std::cout.flush();
+        delay(delayms);
     }
     std::cout << std::endl;
 }

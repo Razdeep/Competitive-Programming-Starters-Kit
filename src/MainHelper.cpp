@@ -17,15 +17,14 @@
 #include <fstream>
 #include "MainHelper.h"
 #include "Misc.h"
-
-#define MAX 1000000
+#include "Constant.h"
 
 void cpsk::MainHelper::showHelp() {
     std::cout << "To create a source file quickly, type `cpsk <FILENAME>`" << std::endl;
 }
 
 void cpsk::MainHelper::showVersion() {
-    Misc::drawLineTransition(60, 50);
+    Misc::drawLineTransition(60);
     std::string space = "                ";
     Misc::transitionText(space + " #####  ######   #####  #    #");
     Misc::transitionText(space + "#     # #     # #     # #   #");
@@ -34,9 +33,9 @@ void cpsk::MainHelper::showVersion() {
     Misc::transitionText(space + "#       #             # #  #");
     Misc::transitionText(space + "#     # #       #     # #   #");
     Misc::transitionText(space + " #####  #        #####  #    # ");
-    Misc::drawLineTransition(60, 50);
-    Misc::transitionText(std::string("\tCompetitive Programming Starters Kit (CPSK)"), 100);
-    Misc::transitionText(std::string("\t\tby Rajdeep Roy Chowdhury"), 100);
-    Misc::drawLineTransition(60, 50);
+    Misc::drawLineTransition(60);
+    Misc::transitionText(std::string("\tCompetitive Programming Starters Kit (CPSK)"));
+    Misc::transitionText(std::string("\t\tby Rajdeep Roy Chowdhury"));
+    Misc::drawLineTransition(60);
     Misc::transitionText(std::string("Version 0.1"));
 }

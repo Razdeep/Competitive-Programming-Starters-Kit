@@ -15,6 +15,7 @@
  */
 #include "SourceFile.h"
 #include "BaseException.h"
+#include "Constant.h"
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -34,12 +35,9 @@ std::string getHomeDirectory() {
 #endif
 
 std::string getCurrentDirectory() {
-    constexpr int MAX = int(1e5);
-    char res[MAX];
-    return (getcwd(res, MAX) ? std::string(res): std::string(""));
+    char res[MAX_BUFFER];
+    return (getcwd(res, MAX_BUFFER) ? std::string(res): std::string(""));
 }
-
-constexpr int MAX = int(1e5);
 
 cpsk::SourceFile::SourceFile(const std::string &file_name) {
     mFileName = file_name;
@@ -77,7 +75,7 @@ bool cpsk::SourceFile::produceSource() const {
     std::fstream template_file;
     std::fstream output_file;
     try {
-        std::string file_name = "TEMPLATE";
+        const std::string& file_name = "TEMPLATE";
         std::string file_name_path = getHomeDirectory();
         file_name_path += "/.cpsk/";
         file_name_path += file_name;
@@ -85,17 +83,20 @@ bool cpsk::SourceFile::produceSource() const {
         if (!template_file) {
             throw new cpsk::exceptions::FileNotFoundException();
         }
-        std::string output_file_name_path = getCurrentDirectory() + "/" + mFileName;
+
+        const std::string& output_file_name_path = getCurrentDirectory() + "/" + mFileName;
         output_file.open(output_file_name_path, std::ios::trunc | std::ios::out);
         if (!output_file) {
             throw new cpsk::exceptions::FileCreationException();
         }
-        char buffer[MAX];
+
+        char buffer[MAX_BUFFER];
         while (!template_file.eof()) {
-            template_file.getline(buffer, MAX);
+            template_file.getline(buffer, MAX_BUFFER);
             output_file << buffer;
             output_file << std::endl;
         }
+
         template_file.close();
         output_file.close();
         std::cout << file_name << " successfully created." << std::endl;
@@ -116,13 +117,13 @@ bool cpsk::SourceFile::produceSource() const {
 }
 
 bool cpsk::SourceFile::hasCorrectExtension() const {
-    const std::string expected_extension = ".cpp";
-    int file_name_length = int(mFileName.size());
+    const std::string& expected_extension = ".cpp";
+    int file_name_length = static_cast<int>(mFileName.size());
     return mFileName.substr(file_name_length - 4, file_name_length) == expected_extension;
 }
 
 void cpsk::SourceFile::ensureExtension() {
-    int file_name_length = int(mFileName.size());
+    int file_name_length = static_cast<int>(mFileName.size());
 
     if (file_name_length > 4) {
         if (!hasCorrectExtension()) {
