@@ -1,3 +1,5 @@
+include(CodeCoverage)
+
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -18,5 +20,9 @@ target_link_libraries(cpskTest gtest gtest_main pthread)
 
 add_test(NAME cpskTest
         COMMAND cpskTest)
+
+setup_target_for_coverage_lcov(
+                            NAME cpskTestCoverage
+                            EXECUTABLE cpskTest)
 
 gtest_discover_tests(cpskTest)
