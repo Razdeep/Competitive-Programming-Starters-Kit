@@ -17,7 +17,7 @@
 #include "Constant.h"
 
 #ifdef _WIN32
-
+#include <windows.h>
 #else
 #include <unistd.h>
 #endif
@@ -27,7 +27,12 @@ void cpsk::Misc::delay() {
 }
 
 void cpsk::Misc::delay(const long int ms) {
-    usleep(ms * 1000);
+#ifdef _WIN32
+    Sleep(ms);
+#else
+    static constexpr int TO_MICROSECONDS = 1000;
+    usleep(ms * TO_MICROSECONDS);
+#endif
 }
 
 void cpsk::Misc::drawLine(const char ch, int n) {
