@@ -11,6 +11,8 @@ jobs:
     steps:
       - id: checkout
         uses: actions/checkout@v2
+      - name: Setup LCOV
+        uses: hrishikesh-kadam/setup-lcov@v1
       - id: build-on-windows
         if: matrix.operating-system == 'windows-latest'
         run: mkdir build && cd build && cmake .. && cmake --build . --target INSTALL
